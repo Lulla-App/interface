@@ -8,4 +8,4 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 app.register_blueprint(routes)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")  # , ssl_context="abdhoc")
+    app.run(host="0.0.0.0" , ssl_context="adhoc")
