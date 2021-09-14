@@ -2,9 +2,8 @@ from flask import request, jsonify
 from urllib.parse import urlparse
 from . import routes
 from api_integrations import get_oauth_token_from_google
+from data_access import add_google_oauth_tokens_to_database
 from glue import GoogleScope, GoogleScopeMap, GoogleScopeURI
-
-# from data_access import add_oauth_tokens_to_database, add_google_oauth_tokens_to_database
 
 
 @routes.route("/google_callback")
@@ -22,7 +21,7 @@ def google_oauth_callback():
         oauth_token = get_oauth_token_from_google(
             str(request.args.get("code")), scope_map
         )
-        # add_google_oauth_tokens_to_database([oauth_token])
+        add_google_oauth_tokens_to_database([oauth_token])
         # Should there be a system to log unexpected fields?
         return jsonify(message="job done")
     except Exception as e:
